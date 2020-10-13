@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
@@ -18,7 +15,20 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class Car {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private Producer producer;
+    @Column
+    private String markName;
+    @Column
+    private String modelName;
+    @Column
+    private String issueYear;
+    @Column
+    private Double price;
+    @Column
+    private String type;
+    @Column
+    private String frontPicture;
+    @OneToOne(fetch = FetchType.LAZY)
+    private Description description;
 }
